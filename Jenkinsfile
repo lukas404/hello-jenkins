@@ -1,21 +1,13 @@
 node {
     checkout scm
 
-    stage('Frontend') {
+    stage('Build and test application') {
         dir('frontend/toolbox-cloud-portal') {
             docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
-                stage('Installation') {
-                    sh 'npm install && npm install --only=dev'
-                }
-                stage('Testing') {
-                    sh 'ng test --watch=false --browsers=ChromeHeadless'
-                }
-                stage('Linting') {
-                    sh 'ng lint'
-                }
-                stage('Building') {
-                    sh 'ng build --output-path=./dist/out --configuration production'
-                }
+                sh 'npm install && npm install --only=dev'
+                sh 'ng test --watch=false --browsers=ChromeHeadless'
+                sh 'ng lint'
+                sh 'ng build --output-path=./dist/out --configuration production'
             }
         }
     }
