@@ -17,7 +17,7 @@ node {
             docker.image('golang:1.12.4').inside('-e HOME=/tmp') { c ->
                 sh 'go version'
                 sh 'go get -u golang.org/x/lint/golint'
-                sh 'golint -set_exit_status $WORKSPACE/...'
+                sh 'golint -set_exit_status ./...'
             }
         }
     }
