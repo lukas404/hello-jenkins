@@ -16,8 +16,21 @@ node {
         dir('backend') {
             docker.image('golang:1.12.4').inside('-e HOME=/tmp') { c ->
                 sh 'go version'
+                
+                echo('Pulling dependencies')
                 sh 'go get -u golang.org/x/lint/golint'
+
+                echo('Vetting')
+                sh 'go vet'
+
+                echo('Linting')
                 sh 'golint -set_exit_status ./...'
+
+                echo('Testing')
+                sh 'go test'
+
+                echo('Bulding')
+                sh 'go build'
             }
         }
     }
