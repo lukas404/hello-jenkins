@@ -13,7 +13,11 @@ node {
     }
 
     stage('Backend: Test and Build') {
-        echo('TODO: BUILD BACKEND')
+        dir('backend') {
+            docker.image('golang:1.12.4').inside { c ->
+                sh 'echo Hello from the other side!'
+            }
+        }
     }
     
     stage('Frontend: Build, Tag and Push image') {
