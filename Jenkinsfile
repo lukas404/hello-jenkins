@@ -15,7 +15,12 @@ node {
     stage('Backend: Test and Build') {
         dir('backend') {
             docker.image('golang:1.12.4').inside { c ->
-                sh 'echo Hello from the other side!'
+                sh 'go version'
+                sh 'echo $GOPATH'
+                sh 'ls -la $GOPATH'
+                // sh 'go get -u github.com/golang/dep/cmd/dep'
+                // sh 'go get -u github.com/golang/lint/golint'
+                // sh 'cd $GOPATH/src/cmd/project && dep ensure'
             }
         }
     }
