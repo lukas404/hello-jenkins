@@ -3,8 +3,8 @@ node {
 
     stage('Build and test application') {
         dir('frontend/toolbox-cloud-portal') {
-            docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
-                stage('Pre-build'){sh 'npm install && npm install --only=dev'}
+            docker.image('trion/ng-cli-karma:7.0.4').inside { c ->
+                sh 'npm install && npm install --only=dev'
                 sh 'ng test --watch=false --browsers=ChromeHeadless'
                 sh 'ng lint'
                 sh 'ng build --output-path=./dist/out --configuration production'
