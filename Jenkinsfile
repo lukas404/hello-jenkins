@@ -16,8 +16,13 @@ node {
         echo('TODO: BUILD BACKEND')
     }
     
-    stage('Docker-Image: Build, Tag and Push') {
+    stage('Frontend: Build, Tag and Push image') {
         def version = readFile('VERSION').trim()
         echo(String.format('Image-Name: frontend-image:%s-%s-%s', version, BRANCH_NAME, BUILD_NUMBER))
+    }
+
+    stage('Backend: Build, Tag and Push image') {
+        def version = readFile('VERSION').trim()
+        echo(String.format('Image-Name: backend-image:%s-%s-%s', version, BRANCH_NAME, BUILD_NUMBER))
     }
 }
