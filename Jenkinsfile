@@ -16,7 +16,7 @@ node {
         dir('backend') {
             docker.image('golang:1.12.4').inside { c ->
                 sh 'go version'
-                sh 'go get -u github.com/golang/lint/golint'
+                sh 'go get -u golang.org/x/lint/golint'
                 sh 'cd $WORKSPACE && golint .'
             }
         }
