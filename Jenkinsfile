@@ -19,6 +19,8 @@ node {
                 
                 echo('Pulling dependencies')
                 sh 'go get -u golang.org/x/lint/golint'
+                sh 'go get -u github.com/golang/dep/cmd/dep'
+                sh 'dep ensure'
 
                 echo('Vetting')
                 sh 'go vet'
