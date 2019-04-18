@@ -1,9 +1,9 @@
 node {
     checkout scm
 
-    stages('Frontend') {
-        dir('frontend/toolbox-cloud-portal') {
-            docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
+    dir('frontend/toolbox-cloud-portal') {
+        docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
+            stages {
                 stage('Installation') {
                     sh 'npm install && npm install --only=dev'
                 }
