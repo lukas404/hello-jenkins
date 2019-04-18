@@ -1,7 +1,7 @@
 node {
     checkout scm
 
-    stage('Frontend') {
+    stages('Frontend') {
         dir('frontend/toolbox-cloud-portal') {
             docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
                 stage('Installation') {
