@@ -1,23 +1,23 @@
 node {
     checkout scm
 
-    stage('Frontend: Test and Build') {
-        dir('frontend') {
-            docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
-                sh 'npm install && npm install --only=dev'
-                sh 'ng test --watch=false --browsers=ChromeHeadless'
-                sh 'ng lint'
-                sh 'ng build --output-path=./dist/out --configuration production'
-            }
-        }
-    }
+    // stage('Frontend: Test and Build') {
+    //     dir('frontend') {
+    //         docker.image('trion/ng-cli-karma:7.3.8').inside { c ->
+    //             sh 'npm install && npm install --only=dev'
+    //             sh 'ng test --watch=false --browsers=ChromeHeadless'
+    //             sh 'ng lint'
+    //             sh 'ng build --output-path=./dist/out --configuration production'
+    //         }
+    //     }
+    // }
 
     stage('Backend: Test and Build') {
         dir('backend') {
             docker.image('golang:1.12.4').inside { c ->
                 sh 'go version'
                 sh 'echo $GOPATH'
-                sh 'ls -la $GOPATH'
+                sh 'ls -la $GOPATH/src'
                 // sh 'go get -u github.com/golang/dep/cmd/dep'
                 // sh 'go get -u github.com/golang/lint/golint'
                 // sh 'cd $GOPATH/src/cmd/project && dep ensure'
