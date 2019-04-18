@@ -14,7 +14,7 @@ node {
 
     stage('Backend: Test and Build') {
         dir('backend') {
-            docker.image('golang:1.12.4').inside('-e HOME=/root') { c ->
+            docker.image('golang:1.12.4').inside('-e HOME=/tmp') { c ->
                 sh 'go version'
                 sh 'go get -u golang.org/x/lint/golint'
                 sh 'cd $WORKSPACE && golint .'
